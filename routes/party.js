@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 router.route('/')
-// Login
+// Infos
 .get(function(req, res){})
-// Sign up
+// Join
+.put(function(req, res){})
+// Create
 .post(function(req, res){})
-// Logout
+// End
 .delete(function(req, res){});
