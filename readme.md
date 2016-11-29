@@ -129,7 +129,8 @@ At least **one** parameter is mandatory
     state : 3,
     created : "2002-05-30T09:30:10.5",
     end : "2002-05-30T09:30:10.5",
-    users : {}
+    users : {},
+    beacons : {}
 } 
 ```
 
@@ -140,6 +141,7 @@ At least **one** parameter is mandatory
 * ![string](http://gautierguillaume.com/imgs/string.png) created 
 * (optional) ![string](http://gautierguillaume.com/imgs/string.png) end 
 * ![object](http://gautierguillaume.com/imgs/object.png) users 
+* ![object](http://gautierguillaume.com/imgs/object.png) beacons 
 
 
 #### Response Messages
@@ -178,7 +180,8 @@ or
     time : 10,
     state : 3,
     created : "2002-05-30T09:30:10.5",
-    users : {}
+    users : {},
+    baecons : {}
 } 
 ```
 
@@ -188,6 +191,7 @@ or
 * ![int](http://gautierguillaume.com/imgs/int.png) state 
 * ![string](http://gautierguillaume.com/imgs/string.png) created 
 * ![object](http://gautierguillaume.com/imgs/object.png) users 
+* ![object](http://gautierguillaume.com/imgs/object.png) beacons 
 
 
 #### Response Messages
