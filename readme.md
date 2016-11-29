@@ -130,7 +130,8 @@ At least **one** parameter is mandatory
     created : "2002-05-30T09:30:10.5",
     end : "2002-05-30T09:30:10.5",
     users : {},
-    beacons : {}
+    beacons : {},
+    missions : {}
 } 
 ```
 
@@ -142,6 +143,7 @@ At least **one** parameter is mandatory
 * (optional) ![string](http://gautierguillaume.com/imgs/string.png) end 
 * ![object](http://gautierguillaume.com/imgs/object.png) users 
 * ![object](http://gautierguillaume.com/imgs/object.png) beacons 
+* ![object](http://gautierguillaume.com/imgs/object.png) missions 
 
 
 #### Response Messages
@@ -181,7 +183,8 @@ or
     state : 3,
     created : "2002-05-30T09:30:10.5",
     users : {},
-    baecons : {}
+    baecons : {},
+    missions : {}
 } 
 ```
 
@@ -192,6 +195,7 @@ or
 * ![string](http://gautierguillaume.com/imgs/string.png) created 
 * ![object](http://gautierguillaume.com/imgs/object.png) users 
 * ![object](http://gautierguillaume.com/imgs/object.png) beacons 
+* ![object](http://gautierguillaume.com/imgs/object.png) missions 
 
 
 #### Response Messages
@@ -214,7 +218,12 @@ or
     name : "PartyName",
     player_limit : 3,
     password : "password",
-    time : 10
+    time : 10,
+    beacons : {
+        1 : "8367927whdjhba",
+        2 : "2434235435nfjk",
+        ...
+    }
 }
 ```
 
@@ -225,6 +234,8 @@ or
 * (optional) ![String](http://gautierguillaume.com/imgs/string.png) password ( max 16 char )
 * (optional) ![int](http://gautierguillaume.com/imgs/int.png) time ( in minutes )
 
+* ![object](http://gautierguillaume.com/imgs/object.png) time ( in minutes )
+
 #### Response sample
 
 ```JS
@@ -234,7 +245,9 @@ or
     time : 10,
     state : 3,
     created : "2002-05-30T09:30:10.5",
-    users : {}
+    users : {},
+    beacons : {},
+    missions : {},
 } 
 ```
 
@@ -244,6 +257,8 @@ or
 * ![int](http://gautierguillaume.com/imgs/int.png) state 
 * ![string](http://gautierguillaume.com/imgs/string.png) created 
 * ![object](http://gautierguillaume.com/imgs/object.png) users 
+* ![object](http://gautierguillaume.com/imgs/object.png) beacons 
+* ![object](http://gautierguillaume.com/imgs/object.png) missions 
 
 
 #### Response Messages
@@ -280,10 +295,10 @@ or
 
 #### Response Messages
 
-* 200 : Party deleted
+* 200 : Party ended
 * 400 : Invalid request
 * 401 : Invalid token
-* 403 : Party can't be deleted (missing permission)
+* 403 : Party can't be ended (missing permission)
 * 403 : Unknow error
 
 ***
@@ -324,3 +339,77 @@ or
 * 400 : Invalid request
 * 401 : Invalid token
 * 403 : User can't be found
+
+***
+
+### User edit
+![HTTP PATCH](http://gautierguillaume.com/imgs/patch.png) `/user`
+
+#### Params : 
+```JS
+{
+    user_id : 1,
+    username : "username",
+    email : "me@email.com",
+    password : "supermotdepassedeouf"
+}
+```
+
+* ![int](http://gautierguillaume.com/imgs/int.png) user_id 
+* (optional) ![string](http://gautierguillaume.com/imgs/string.png) username 
+* (optional) ![string](http://gautierguillaume.com/imgs/string.png) email 
+* (optional) ![string](http://gautierguillaume.com/imgs/string.png) password 
+
+#### Response sample
+
+```JS
+{
+    status : 200,
+    username : "username",
+    email : "user@email.com",
+    password : true
+} 
+```
+
+* ![int](http://gautierguillaume.com/imgs/int.png) status 
+* (optional) ![string](http://gautierguillaume.com/imgs/string.png) username 
+* (optional) ![string](http://gautierguillaume.com/imgs/string.png) email 
+* (optional) ![boolean](http://gautierguillaume.com/imgs/bool.png) password 
+
+#### Response Messages
+
+* 200 : User edited
+* 400 : Invalid request
+* 401 : Invalid token
+* 403 : User can't be edited
+
+***
+
+### User delete
+![HTTP delete](http://gautierguillaume.com/imgs/delete.png) `/user`
+
+#### Params : 
+```JS
+{
+    user_id : 1
+}
+```
+
+* ![int](http://gautierguillaume.com/imgs/int.png) user_id 
+
+#### Response sample
+
+```JS
+{
+    status : 200
+} 
+```
+
+* ![int](http://gautierguillaume.com/imgs/int.png) status 
+
+#### Response Messages
+
+* 200 : User deleted
+* 400 : Invalid request
+* 401 : Invalid token
+* 403 : User can't be deleted
