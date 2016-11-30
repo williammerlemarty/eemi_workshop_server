@@ -1,12 +1,12 @@
 /* 
 	RequestBluebird 
-	by Deskover Team
+	by Xeewi
 */
 
 var request = require('request');
 var Promise = require('bluebird');
 
-function request_bluebird(){
+function requestBluebird(){
 
 	/* var params = {
 		url : STRING,
@@ -101,4 +101,4 @@ function request_bluebird(){
 	};
 }
 
-module.exports = request_bluebird;
+module.exports = requestBluebird;
