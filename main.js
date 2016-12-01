@@ -2,9 +2,11 @@
 var express      = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
-var authRoute    = require('./routes/auth.js');
-var expressJwt = require('express-jwt');  
-var config = require("./config.js");
+var expressJwt   = require('express-jwt');
+
+var config     = require("./config.js");
+var authRoute  = require('./routes/auth.js');
+var partyRoute = require('./routes/party.js');
 
 // Environement config
 process.env.NODE_ENV = config.ENV;
@@ -18,5 +20,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use('/auth', authRoute);
+app.use('/party', partyRoute);
 
 app.listen(8080);

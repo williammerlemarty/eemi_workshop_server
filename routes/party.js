@@ -1,12 +1,25 @@
+/*
+	Party routes
+	by Xeewi
+*/
+
 var express = require('express');
-var router = express.Router();
+var router  = express.Router();
 
 router.route('/')
-// Infos
-.get(function(req, res){})
 // Join
-.put(function(req, res){})
+.get(function(req, res){
+	
+})
 // Create
-.post(function(req, res){})
-// End
-.delete(function(req, res){});
+.post(function(req, res){
+	
+});
+
+router.route('/beacons')
+// Add to party
+.post(function(req, res){
+
+});
+
+module.exports = router;
