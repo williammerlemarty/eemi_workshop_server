@@ -2,12 +2,14 @@
 
 ## Summary
 
-* [API Routes](https://github.com/xeewi/workshop_server/wiki/API-Routes)
-* [SocketIO client](https://github.com/xeewi/workshop_server/wiki/SocketIO-Client)
-
 * [Install](#install)
+* [Routes](#routes)
 
 ## Install
 
 npm install
 node main.js
+
+## Routes
+
+![HTTP GET](http://gautierguillaume.com/imgs/get.png) /auth

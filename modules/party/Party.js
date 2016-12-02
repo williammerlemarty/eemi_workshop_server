@@ -62,7 +62,21 @@ function Party(){
 				}
 			})
 			.catch(function(err){
-				reject(err);
+				service.insert(party)
+				.then(function(rows){
+					// Add user to party members
+					service.insertUser(party, user)
+					.then(function(rows){
+						rows.ok = true;
+						resolve(rows);
+					})
+					.catch(function(err){
+						reject({ok : false, status : 403, err : "Party created but user can't join"});
+					});
+				})
+				.catch(function(err){
+					reject(err);
+				});
 			});
 
 			delete service;
