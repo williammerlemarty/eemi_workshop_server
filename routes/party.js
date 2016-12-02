@@ -50,7 +50,7 @@ router.route('/')
 			res.json(json);
 		})
 		.catch(function(err){
-			res.status(err.status);
+			console.log(err);
 			res.json(err);
 		});
 

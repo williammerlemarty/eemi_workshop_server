@@ -21,15 +21,14 @@ PartyService.prototype.insert = function(party){
 			return false; 
 		}
 
-		var query = "INSERT INTO ws_party (user_id, name, password, players_limit, state, time, created) VALUES (?,?,?,?,?,?,?)";
+		var query = "INSERT INTO ws_party (user_id, name, password, players_limit, state, time, created) VALUES (?,?,?,?,?,?, NOW())";
 		var params = [
 			party.user_id, 
 			party.name,
 			party.password,
 			party.players_limit,
 			party.state,
-			party.time,
-			party.created
+			party.time
 		];
 
 		var model = new Model();

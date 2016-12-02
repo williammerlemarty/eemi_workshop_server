@@ -24,12 +24,7 @@ function PartyObject(values){
 		else { this.time = 10; }
 
 	if ( typeof values.created === "string" ) { this.created = values.created; }
-		else { d = new Date(); this.created = d.getUTCFullYear() + '-' +
-            ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
-            ('00' + date.getUTCDate()).slice(-2) + ' ' +
-            ('00' + date.getUTCHours()).slice(-2) + ':' +
-            ('00' + date.getUTCMinutes()).slice(-2) + ':' +
-            ('00' + date.getUTCSeconds()).slice(-2); }
+		else { d = new Date(); this.created = d.toString(); }
 
 	if ( typeof values.ended === "string" ) { this.ended = values.ended; }
 
