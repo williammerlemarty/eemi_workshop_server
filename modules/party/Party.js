@@ -138,7 +138,7 @@ function Party(){
 			if (typeof party.id === "undefined") { reject({ok : false, status : 400, err: "Missing id"}); return false; }
 			var service = new Service();
 
-			service.start(party)
+			service.updateStart(party)
 			.then(function(rows){ resolve(rows); })
 			.catch(function(err){ reject(err); });
 

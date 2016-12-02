@@ -25,6 +25,8 @@ function PartyObject(values){
 	if ( typeof values.created !== "undefined" ) { this.created = values.created; }
 		else { d = new Date(); this.created = d.toString(); }
 
+	if ( typeof values.started !== "undefined" ) { this.started = values.started; }
+
 	if ( typeof values.ended !== "undefined" ) { this.ended = values.ended; }
 
 	if ( typeof values.users !== "undefined" ) { this.users = values.users; }

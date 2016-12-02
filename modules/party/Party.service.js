@@ -149,16 +149,14 @@ PartyService.prototype.updateStart = function(party){
 			return false; 
 		}
 
-		var query = "UPDATE ws_party SET start=NOW() WHERE id = ?";
+		var query = "UPDATE ws_party SET started=NOW() WHERE id = ?";
 		var params = [ party.id ];
 
 		var model = new Model();
 
 		model.query(query, params)
 		.then(function(rows){
-			var d = new Date();
-			party.start = d.toString();
-			resolve({ ok : true, party : party });
+			resolve({ ok : true});
 		}).catch(function(err){
 			reject({ ok : false, status : "403", err: "Cannot start party" });
 		});

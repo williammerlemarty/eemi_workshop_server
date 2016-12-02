@@ -28,7 +28,7 @@ router.route('/')
 		
 		Party.join(req.query, req.userObj)
 		.then(function(partyRow){ res.json({ok:true, party : partyRow.party}); })
-		.catch(function(err){ console.log(err); res.json(err); });
+		.catch(function(err){ res.json(err); });
 
 		delete Party;
 	})
@@ -50,7 +50,7 @@ router.route('/')
 			res.json(json);
 		})
 		.catch(function(err){
-			console.log(err);
+		
 			res.json(err);
 		});
 
@@ -130,8 +130,10 @@ router.route('/start')
 	.get(function(req, res){
 		var Party = new PartyModule();
 		Party.start(req.query)
-		.then(function(rows){
-			res.json(rows);
+		.then(function(rowsOk){
+			Party.completeById(req.query)
+			.then(function(rowsParty){ res.json(rowsParty); })
+			.catch(function(err){ res.status(err.status); res.json(err); });
 		})
 		.catch(function(err){
 			res.status(err.status);
