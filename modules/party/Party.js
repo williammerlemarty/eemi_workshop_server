@@ -110,7 +110,7 @@ function Party(){
 						reject({ok : false, status : 403, err:"Party full or wrong password"});
 					}
 				})
-				.catch(function(err){ reject(err); });				
+				.catch(function(err){ console.log(err); reject(err); });				
 			})
 			.catch(function(err){ reject(err); });
 

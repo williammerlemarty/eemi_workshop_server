@@ -101,7 +101,8 @@ PartyService.prototype.selectActiveByName = function(party){
 
 		model.query(query, params)
 		.then(function(rows){
-			resolve({ ok : true, party : rows[0] });
+			if (rows.length < 1) { reject({ok : false, status : 403, err : "party cannot be found"}); }
+			else { resolve({ ok : true, party : rows[0] }); }
 		}).catch(function(err){
 			reject({ ok : false, status : "403", err: "Party active named '" + party.name + "' cannot be found" });
 		});
