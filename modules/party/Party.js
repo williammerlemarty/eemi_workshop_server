@@ -124,8 +124,22 @@ function Party(){
 						reject({ok : false, status : 403, err:"Party full or wrong password"});
 					}
 				})
-				.catch(function(err){ console.log(err); reject(err); });				
+				.catch(function(err){ reject(err); });				
 			})
+			.catch(function(err){ reject(err); });
+
+			delete service;
+		});
+	};
+
+	this.start = function(values, user){
+		return new Promise(function(resolve, reject){
+			var party = new Obj(values);
+			if (typeof party.id === "undefined") { reject({ok : false, status : 400, err: "Missing id"}); return false; }
+			var service = new Service();
+
+			service.start(party)
+			.then(function(rows){ resolve(rows); })
 			.catch(function(err){ reject(err); });
 
 			delete service;
@@ -137,7 +151,6 @@ function Party(){
 	this.completeById = function(values){
 		return new Promise(function(resolve, reject){
 			var party = new Obj(values);
-
 			if (typeof party.id === "undefied" ) { reject({ok : false, status : 400, err: "Missing parameters id" }); }
 			
 			var service = new Service();
@@ -145,7 +158,6 @@ function Party(){
 			// Select active party by ID
 			service.selectActiveById(party)
 			.then(function(rowsParty){
-				console.log(rowsParty);
 				if (typeof rowsParty.party === "undefined") { 
 					reject({ok : false, status : 403, err : "Party not exist"}); 
 					return false; 

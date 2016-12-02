@@ -109,7 +109,31 @@ router.route('/sync')
 			res.json(rows);
 		})
 		.catch(function(err){
-			console.log(err);
+			res.status(err.status);
+			res.json(err);
+		});
+
+		delete Party;
+	});
+
+/*
+	'/party/start'
+	POST :  start party
+*/
+router.route('/start')
+	/* 	
+		Start party
+		params : {
+			party_id : int
+		} 
+	*/
+	.get(function(req, res){
+		var Party = new PartyModule();
+		Party.start(req.query)
+		.then(function(rows){
+			res.json(rows);
+		})
+		.catch(function(err){
 			res.status(err.status);
 			res.json(err);
 		});

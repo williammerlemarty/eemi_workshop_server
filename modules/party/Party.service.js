@@ -140,5 +140,33 @@ PartyService.prototype.selectActiveById = function(party){
 	}); 
 };
 
+PartyService.prototype.updateStart = function(party){ 
+	return new Promise(function(resolve, reject){
+		
+		// Param test
+		if ( party.constructor.name != "PartyObject" ) { 
+			reject({ok : false, status : 400, err: "Param isn't a PartyObject"}); 
+			return false; 
+		}
+
+		var query = "UPDATE ws_party SET start=NOW() WHERE id = ?";
+		var params = [ party.id ];
+
+		var model = new Model();
+
+		model.query(query, params)
+		.then(function(rows){
+			var d = new Date();
+			party.start = d.toString();
+			resolve({ ok : true, party : party });
+		}).catch(function(err){
+			reject({ ok : false, status : "403", err: "Cannot start party" });
+		});
+
+		delete model;
+
+	}); 
+};
+
 
 module.exports = PartyService;
