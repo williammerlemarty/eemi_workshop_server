@@ -9,7 +9,7 @@ function PartyObject(values){
 	
 	if ( typeof values.user_id === "number" ) { this.user_id = values.user_id; }
 	
-	if ( typeof values.name === "string" ) { this.name = values.name; }
+	if ( typeof values.name === "string" && values.name.length < 17 ) { this.name = values.name; }
 	
 	if ( typeof values.password === "string" ) { this.password = values.password; }
 		else { this.password = ""; }
@@ -29,13 +29,13 @@ function PartyObject(values){
 	if ( typeof values.ended === "string" ) { this.ended = values.ended; }
 
 	if ( typeof values.users === "object" ) { this.users = values.users; }
-		else { this.users = {}; }
+		else { this.users = []; }
 
 	if ( typeof values.beacons === "object" ) { this.beacons = values.beacons; }
-		else { this.beacons = {}; }
+		else { this.beacons = []; }
 
 	if ( typeof values.missions === "object" ) { this.missions = values.missions; }
-		else { this.missions = {}; }
+		else { this.missions = []; }
 
 };
 
