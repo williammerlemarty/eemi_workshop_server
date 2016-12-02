@@ -91,4 +91,29 @@ router.route('/beacons')
 		delete Beacon;
 	});
 
+/*
+	'/party/sync'
+	GET : sync party object
+*/
+router.route('/sync')
+	/* 	
+		Sny party object
+		params : {
+			party_id : int
+		} 
+	*/
+	.get(function(req, res){
+		var Party = new PartyModule();
+		Party.completeById(req.query)
+		.then(function(rows){
+			res.json(rows);
+		})
+		.catch(function(err){
+			console.log(err);
+			res.status(err.status);
+			res.json(err);
+		});
+
+		delete Party;
+	});
 module.exports = router;

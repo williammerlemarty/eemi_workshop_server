@@ -137,7 +137,7 @@ function Party(){
 	this.completeById = function(values){
 		return new Promise(function(resolve, reject){
 			var party = new Obj(values);
-			
+
 			if (typeof party.id === "undefied" ) { reject({ok : false, status : 400, err: "Missing parameters id" }); }
 			
 			var service = new Service();
@@ -145,7 +145,12 @@ function Party(){
 			// Select active party by ID
 			service.selectActiveById(party)
 			.then(function(rowsParty){
-
+				console.log(rowsParty);
+				if (typeof rowsParty.party === "undefined") { 
+					reject({ok : false, status : 403, err : "Party not exist"}); 
+					return false; 
+				}
+				
 				party = new Obj(rowsParty.party);
 
 				// List users on the party				

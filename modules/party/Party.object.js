@@ -4,7 +4,6 @@
 */
 
 function PartyObject(values){
-
 	if ( typeof values.id !== "undefined" ) { this.id = values.id; }
 
 	if ( typeof values.user_id !== "undefined" ) { this.user_id = values.user_id; }
