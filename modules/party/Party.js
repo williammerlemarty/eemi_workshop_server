@@ -3,12 +3,13 @@
 	by Xeewi
 */
 
-var Promise = require('bluebird');
+var Promise  = require('bluebird');
+
 var Obj     = require('./Party.object.js');
 var Service = require('./Party.service.js');
 
-var UserModule = require('../user/User.js');
-var BeaconModule = require('../beacon/Beacon.js');
+var UserModule    = require('../user/User.js');
+var BeaconModule  = require('../beacon/Beacon.js');
 var MissionModule = require('../mission/Mission.js');
 
 /*
@@ -133,13 +134,21 @@ function Party(){
 	};
 
 	this.start = function(values, user){
+		var self = this;
 		return new Promise(function(resolve, reject){
 			var party = new Obj(values);
 			if (typeof party.id === "undefined") { reject({ok : false, status : 400, err: "Missing id"}); return false; }
 			var service = new Service();
 
 			service.updateStart(party)
-			.then(function(rows){ resolve(rows); })
+			.then(function(rows){ 
+				self.completeById(party)
+				.then(function(rowsParty){ 
+					
+					resolve(rowsParty);
+				})
+				.catch(function(err){ reject(err); })
+			})
 			.catch(function(err){ reject(err); });
 
 			delete service;

@@ -4,10 +4,14 @@
 */
 
 var express = require('express');
+var schedule = require('node-schedule');
+
 var router  = express.Router();
+var jobs = [];
 
 var PartyModule  = require('../modules/party/Party.js');
 var BeaconModule = require('../modules/beacon/Beacon.js');
+var MissionModule = require('../modules/mission/Mission.js');
 
 /*
 	'/party/'
@@ -130,10 +134,15 @@ router.route('/start')
 	.get(function(req, res){
 		var Party = new PartyModule();
 		Party.start(req.query)
-		.then(function(rowsOk){
-			Party.completeById(req.query)
-			.then(function(rowsParty){ res.json(rowsParty); })
-			.catch(function(err){ res.status(err.status); res.json(err); });
+		.then(function(rows){
+			var startTime = new Date( Date.now() );
+			var endTime = new Date( Date.getTime() + ( rows.party.time * 10000 ) );
+			var job = schedule.scheduleJob({ start: startTime, end: endTime, rule: '*/25 * * * * *' }, function(){
+				var Mission = new MissionModule();
+				delete Mission;
+			});
+			jobs[rows.party.id] = job;
+			res.json(rows);
 		})
 		.catch(function(err){
 			res.status(err.status);
