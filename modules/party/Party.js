@@ -136,8 +136,8 @@ function Party(){
 
 	this.completeById = function(values){
 		return new Promise(function(resolve, reject){
-			
 			var party = new Obj(values);
+			
 			if (typeof party.id === "undefied" ) { reject({ok : false, status : 400, err: "Missing parameters id" }); }
 			
 			var service = new Service();

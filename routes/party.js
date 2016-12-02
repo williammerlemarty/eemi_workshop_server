@@ -75,7 +75,13 @@ router.route('/beacons')
 
 		Beacon.create(req.body)
 		.then(function(rows){
-			res.json(rows);
+			var Party = new PartyModule();
+
+			Party.completeById({id : req.body.party_id})
+			.then(function(rows){ res.json(rows); })
+			.catch(function(err){ res.status(err.status); res.json(err); });
+
+			delete Party;
 		})
 		.catch(function(err){
 			res.status(err.status);

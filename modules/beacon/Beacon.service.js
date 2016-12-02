@@ -19,6 +19,8 @@ BeaconService.prototype.insert = function(beacon){
 			return false; 
 		}
 
+		console.log(beacon);
+
 		var query = "INSERT INTO ws_party_beacons (party_id, major, minor) VALUES (?,?,?) ";
 		var params = [
 			beacon.party_id,
@@ -33,6 +35,7 @@ BeaconService.prototype.insert = function(beacon){
 			beacon.id = rows.insertId;
 			resolve({ ok : true, beacon : beacon });
 		}).catch(function(err){
+			console.log(err);
 			reject({ ok : false, status : "403", err: "Beacon cannot be created" });
 		});
 

@@ -4,37 +4,37 @@
 */
 
 function PartyObject(values){
+
+	if ( typeof values.id !== "undefined" ) { this.id = values.id; }
+
+	if ( typeof values.user_id !== "undefined" ) { this.user_id = values.user_id; }
 	
-	if ( typeof values.id === "number" ) { this.id = values.id; }
+	if ( typeof values.name !== "undefined" && values.name.length < 17 ) { this.name = values.name; }
 	
-	if ( typeof values.user_id === "number" ) { this.user_id = values.user_id; }
-	
-	if ( typeof values.name === "string" && values.name.length < 17 ) { this.name = values.name; }
-	
-	if ( typeof values.password === "string" ) { this.password = values.password; }
+	if ( typeof values.password !== "undefined" ) { this.password = values.password; }
 		else { this.password = ""; }
 	
-	if ( typeof values.players_limit === "number" ) { this.players_limit = values.players_limit; }
+	if ( typeof values.players_limit !== "undefined" ) { this.players_limit = values.players_limit; }
 		else { this.players_limit = 3; }
 
-	if ( typeof values.state === "number" ) { this.state = values.state; }
+	if ( typeof values.state !== "undefined" ) { this.state = values.state; }
 		else { this.state = 3; }
 
-	if ( typeof values.time === "number" ) { this.time = values.time; }
+	if ( typeof values.time !== "undefined" ) { this.time = values.time; }
 		else { this.time = 10; }
 
-	if ( typeof values.created === "string" ) { this.created = values.created; }
+	if ( typeof values.created !== "undefined" ) { this.created = values.created; }
 		else { d = new Date(); this.created = d.toString(); }
 
-	if ( typeof values.ended === "string" ) { this.ended = values.ended; }
+	if ( typeof values.ended !== "undefined" ) { this.ended = values.ended; }
 
-	if ( typeof values.users === "object" ) { this.users = values.users; }
+	if ( typeof values.users !== "undefined" ) { this.users = values.users; }
 		else { this.users = []; }
 
-	if ( typeof values.beacons === "object" ) { this.beacons = values.beacons; }
+	if ( typeof values.beacons !== "undefined" ) { this.beacons = values.beacons; }
 		else { this.beacons = []; }
 
-	if ( typeof values.missions === "object" ) { this.missions = values.missions; }
+	if ( typeof values.missions !== "undefined" ) { this.missions = values.missions; }
 		else { this.missions = []; }
 
 };
